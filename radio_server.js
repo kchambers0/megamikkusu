@@ -1,3 +1,12 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var db = mongoose.connect('mongodb://localhost/radio');
+require('./models/song_model.js');
+var server = express();
+server.engine('.html', require('ejs').__express);
+server.set('views', __dirname + '/views');
+server.set('view engine', 'html');
+server.use(bodyParser.json());
+require('./radio_routes.js')(server);
+server.listen(8080);
