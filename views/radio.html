@@ -2,25 +2,47 @@
 <html ng-app="radio">
 	<head>
 		<title>{{title}}</title>
-		<link rel="stylesheet" type="text/css" href="/static/css/radio_styles.css" />
+		<link rel="stylesheet" type="text/css" href="/static/styles/radio_styles.css" />
 	</head>
 	<body>
-		<div ng-controller="songController">
+		<div ng-controller="songController" class="container">
 			<h1>{{title}}</h1>
-			<p>hello</p>
 			<audio id="musicbox" ng-bind="musicbox" autoplay>
 				<source src="/music/t e l e p a t h テレパシー能力者/未来へ/04 あなただけ.mp3"/>
 			</audio>
-			<div class="player col-1">
-				<ul class="controls">
-					<li class="play" ng-click="play()">
-						Play
-					</li>
-					<li class="stop" ng-click="pause()">
-						Stop
-					</li>
-				</ul>
+			<div class="row">
+				<div class="player col-2">
+					<ul class="controls">
+						<li class="next">
+							
+						</li>
+						<li class="play" ng-click="play()">
+							
+						</li>
+						<li class="stop" ng-click="pause()">
+							
+						</li>
+						<li class="pause" ng-click="pause()">
+							
+						</li>
+						<li class="back">
+							
+						</li>
+					</ul>
+				</div>
+				<div class="main col-6">
+					<div class="clock">
+
+					</div>
+					<div class="album">
+						<!--<img src="/Users/kevinchambers/Downloads/t e l e p a t h テレパシー能力者 - 未来へ/cover.jpg" />-->
+					</div>
+				</div>
+				<div class="links col-4">
+
+				</div>
 			</div>
+			
 		</div>
 		<script src="http://code.angularjs.org/1.5.8/angular.min.js"></script>
 		<script src="/static/js/radio_app.js"></script>

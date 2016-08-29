@@ -12,4 +12,4 @@ var SongSchema = new Schema({
 		soundcloud: String
 	}
 });
-mongoose.model('Song', SongSchema);
+mongoose.model('Songs', SongSchema);
