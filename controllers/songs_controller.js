@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
 	url = require('url'),
-	Songs = mongoose.model('Songs');
+	Songs = mongoose.model('Song');
+mongoose.Promise = global.Promise;
 exports.getSongIds = function(req, res){
 	Songs.find().select({_id:1}).exec(function(err, songIds){
 		if(err || songIds.length < 1){

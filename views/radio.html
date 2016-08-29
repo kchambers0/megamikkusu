@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="radio">
+	<head>
+		<title>{{title}}</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/radio_styles.css" />
+	</head>
+	<body>
+		<div ng-controller="songController">
+			<h1>{{title}}</h1>
+			<p>hello</p>
+			<audio id="musicbox" ng-bind="musicbox" autoplay>
+				<source src="/music/t e l e p a t h テレパシー能力者/未来へ/04 あなただけ.mp3"/>
+			</audio>
+			<div class="player col-1">
+				<ul class="controls">
+					<li class="play" ng-click="play()">
+						Play
+					</li>
+					<li class="stop" ng-click="pause()">
+						Stop
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="http://code.angularjs.org/1.5.8/angular.min.js"></script>
+		<script src="/static/js/radio_app.js"></script>
+	</body>
+</html>
