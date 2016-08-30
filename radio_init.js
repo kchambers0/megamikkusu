@@ -2,39 +2,61 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var Path = require('path');
 var metadata = require('ffmetadata');
-var musicPath = '../../../Music/iTunes/iTunes\ Media/Music/' 
+var musicPath = './static/albums' 
 var db = mongoose.connect('mongodb://localhost/radio');
 require('./models/song_model.js');
-var Songs = mongoose.model('Songs');
+var Song = mongoose.model('Songs');
 mongoose.Promise = global.Promise;
-function addAlbum(albumPath){
-	fs.readdir(albumPath, function(err, entries){
+function addAlbums(albumsPath){
+	fs.readdir(albumsPath, function(err, entries){
+		var songsList = [];
+		var coverlink;
 		for(var idx in entries){
-			var fullPath = Path.join(albumPath, entries[idx]);
-			//console.log(entries[idx]);
-			(function(fullPath){
+			var fullPath = Path.join(albumsPath, entries[idx]);
+			(function(fullPath, songsList){
+				var parsedPath = Path.parse(fullPath);
                 fs.stat(fullPath, function(err, stats){
                     if(stats && stats.isFile()){
-                        console.log(fullPath);
-                        console.log(Path.parse(fullPath));
-                        if(Path.parse(fullPath).ext == '.mp3'){
+                        if(parsedPath.ext == '.mp3'){
                         	metadata.read(fullPath, function(err, data){
 	                        	if(err) {
-	                        		console.log("error reading metadata:  " + err);
+	                        		 console.log("error reading metadata:  " + err);
 	                        	} else {
-	                        		console.log(data);
+	                        		var song = new Song({
+	                        			title: data.title,
+	                        			artist: data.artist,
+	                        			album: data.album,
+	                        			filepath: fullPath
+	                        		});
+	                        		if(coverlink){
+	                        			song.cover = coverlink
+	                        		}else{
+	                        			console.log('oops!');
+	                        		}
+	                        		song.save(function(err, results){
+	                        			console.log("Saved! "+results);
+	                        		})
 	                        	}
 	                        });
+                        }else if(parsedPath.ext == '.jpg'){
+                        	//strip the static, retreive it from the albums path.
+                        	coverlink = fullPath;
                         }
                     }else if(stats && stats.isDirectory()){
-                        addAlbum(fullPath);
-                        //console.log(stats)
+                        addAlbums(fullPath);
                     }
                 });
-            })(fullPath);
+				
+            })(fullPath, songsList);
 		}
+		
 	});
 }
-Songs.remove().exec(function(){
-	addAlbum(musicPath + 't e l e p a t h テレパシー能力者/');
+function saveSongs(songsList, coverlink){
+	console.log("songl: "+songsList.length);
+	console.log("coverl: "+coverlink);
+}
+Song.remove().exec(function(){
+	addAlbums(musicPath);
+	// console.log(Path.parse(musicPath));
 });

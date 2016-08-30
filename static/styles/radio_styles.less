@@ -1,6 +1,8 @@
 body{
 	background-image:url('/images/bg.jpg');
 	background-size:cover;
+	padding-top:100px;
+	padding-bottom:100px;
 }
 h1{
 	text-indent:-5000px;
@@ -8,8 +10,9 @@ h1{
 	float:right;
 	background-image:url('/images/logo.png');
 	background-size:100%;
+	background-repeat:no-repeat;
+	width:100%;
 	height:80px;
-	width:541px;
 }
 div, li, h1{
 	color:#fff;
@@ -19,9 +22,10 @@ div, li, h1{
 		list-style-type:none;
 		li{
 			display:block;
-			width:59px;
-			height:59px;
+			width:80px;
+			height:80px;
 			cursor:pointer;
+			background-size:cover;
 			&.next{
 				background-image:url('/images/buttons/skip.png');
 			}
@@ -37,6 +41,64 @@ div, li, h1{
 			&.back{
 				background-image:url('/images/buttons/last.png');
 			}
+		}
+	}
+}
+.main{
+	.clock{
+		height:130px;
+		position:relative;
+		margin-bottom:20px;
+		.bubble{
+			-webkit-box-shadow: inset -15px -20px 55px 15px rgba(0, 0, 0, 0.75);
+			-moz-box-shadow: inset -15px -20px 55px 15px rgba(0, 0, 0, 0.75);
+			box-shadow: inset -15px -20px 55px 15px rgba(0, 0, 0, 0.75);
+			border-radius:50%;
+			background-color:#7978F0;
+			position:absolute;
+			&.large{
+				height:100px;
+				width:100px;
+				bottom:50px;
+				z-index:3;
+			}
+			&.small{
+				height:70px;
+				width:70px;
+				bottom:0;
+				z-index:5;
+
+				padding:15px 0 0 5px;
+				font-size:30px;
+				text-transform:uppercase;
+			}
+			&.separator{
+				height:20px;
+				width:20px;
+				background-color:#F89200;
+				-webkit-box-shadow: inset -3px -3px 15px 0px rgba(0, 0, 0, 0.75);
+				-moz-box-shadow: inset -3px -3px 15px 0px rgba(0, 0, 0, 0.75);
+				box-shadow: inset -3px -3px 15px 0px rgba(0, 0, 0, 0.75);
+				bottom:40px;
+			}
+		}
+	}
+	.album{
+		width:100%;
+		height:300px;
+		border:2px solid #ddd;
+		position:relative;
+		text-align:center;
+		img{
+			height:100%;
+		}
+		.info{
+			position:absolute;
+			bottom:0;
+			height:40px;
+			background-color:rgba(0,0,0,.75);
+			display:block;
+			padding:0;
 		}
 	}
 }

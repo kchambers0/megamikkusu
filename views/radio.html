@@ -3,17 +3,17 @@
 	<head>
 		<title>{{title}}</title>
 		<link rel="stylesheet" type="text/css" href="/static/styles/radio_styles.css" />
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	</head>
 	<body>
 		<div ng-controller="songController" class="container">
-			<h1>{{title}}</h1>
-			<audio id="musicbox" ng-bind="musicbox" autoplay>
-				<source src="/music/t e l e p a t h テレパシー能力者/未来へ/04 あなただけ.mp3"/>
+			<audio id="musicbox" ng-bind="musicbox" src="{{track}}" autoplay>
+				<!--<source src="{{track}}" type="audio/mpeg"/>-->
 			</audio>
 			<div class="row">
-				<div class="player col-2">
+				<div class="player col-md-2">
 					<ul class="controls">
-						<li class="next">
+						<li class="next" ng-click="next()">
 							
 						</li>
 						<li class="play" ng-click="play()">
@@ -30,16 +30,23 @@
 						</li>
 					</ul>
 				</div>
-				<div class="main col-6">
+				<div class="main col-md-5">
 					<div class="clock">
-
+						<div class="bubble small" style="left:20px">min</div>
+						<div class="bubble large" style="left:60px"></div>
+						<div class="bubble separator" style="left:175px;"></div>
+						<div class="bubble large" style="left:210px"></div>
+						<div class="bubble small" style="left:280px">sec</div>
 					</div>
 					<div class="album">
-						<!--<img src="/Users/kevinchambers/Downloads/t e l e p a t h テレパシー能力者 - 未来へ/cover.jpg" />-->
+						<img src="{{cover}}" />
+						<p class="info">
+							{{name}} - {{artist}} on {{album}}
+						</p>
 					</div>
 				</div>
-				<div class="links col-4">
-
+				<div class="links col-md-5">
+					<h1>{{title}}</h1>
 				</div>
 			</div>
 			

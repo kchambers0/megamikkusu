@@ -10,3 +10,4 @@ server.set('view engine', 'html');
 server.use(bodyParser.json());
 require('./radio_routes.js')(server);
 server.listen(8080);
+console.log('server running at localhost:8080');

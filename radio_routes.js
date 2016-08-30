@@ -3,7 +3,7 @@ module.exports = function(server){
 	var songs = require('./controllers/songs_controller');
 	server.use('/static', express.static('./static')).
 		use('/images', express.static('./static/images')).
-		use('/music', express.static('../../../Music/iTunes/iTunes\ Media/Music'));
+		use('/albums', express.static('./static/ablums'));
 	server.get('/', function(req, res){
 		res.render('radio');
 	});

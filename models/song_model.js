@@ -7,9 +7,11 @@ var SongSchema = new Schema({
 	filepath: String,
 	cover: String,
 	links: {
-		url: String,
-		bandcamp: String,
-		soundcloud: String
+		url: {type:String, default:"/"},
+		bandcamp: {type:String, default:"http://bandcamp.com/"},
+		soundcloud: {type:String, default:"http://soundcloud.com"},
+		facebook: {type:String, default:"http://facebook.com"},
+		twitter: {type:String, default:"http://twitter.com"}
 	}
 });
 mongoose.model('Songs', SongSchema);
