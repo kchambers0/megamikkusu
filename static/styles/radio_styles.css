@@ -19,6 +19,9 @@ li,
 h1 {
   color: #fff;
 }
+.nowrap {
+  white-space: nowrap;
+}
 .player .controls {
   list-style-type: none;
 }
@@ -47,12 +50,13 @@ h1 {
 .main .clock {
   height: 130px;
   position: relative;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
+  width: 370px;
 }
 .main .clock .bubble {
-  -webkit-box-shadow: inset -15px -20px 55px 15px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: inset -15px -20px 55px 15px rgba(0, 0, 0, 0.75);
-  box-shadow: inset -15px -20px 55px 15px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: inset -10px -10px 45px 20px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset -10px -10px 45px 20px rgba(0, 0, 0, 0.75);
+  box-shadow: inset -10px -10px 45px 20px rgba(0, 0, 0, 0.75);
   border-radius: 50%;
   background-color: #7978F0;
   position: absolute;
@@ -62,6 +66,8 @@ h1 {
   width: 100px;
   bottom: 50px;
   z-index: 3;
+  font-size: 64px;
+  text-align: center;
 }
 .main .clock .bubble.small {
   height: 70px;
@@ -82,11 +88,13 @@ h1 {
   bottom: 40px;
 }
 .main .album {
-  width: 100%;
+  width: 300px;
   height: 300px;
   border: 2px solid #ddd;
   position: relative;
   text-align: center;
+  margin: 0 auto;
+  background-size: contain;
 }
 .main .album img {
   height: 100%;
@@ -94,8 +102,8 @@ h1 {
 .main .album .info {
   position: absolute;
   bottom: 0;
-  height: 40px;
+  min-height: 40px;
   background-color: rgba(0, 0, 0, 0.75);
   display: block;
-  padding: 0;
+  margin: 0;
 }

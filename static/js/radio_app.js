@@ -1,11 +1,16 @@
 var app = angular.module('radio',[])
-app.controller('songController',['$scope', '$http', '$document', function($scope, $http, $document){
+app.controller('songController',['$scope', '$http', '$document', '$interval', function($scope, $http, $document, $interval){
 	$scope.title = "メガミックスのWAVESTATION";
-	$scope.track = '/albums/t e l e p a t h テレパシー能力者 - 未来へ/t e l e p a t h テレパシー能力者 - 未来へ - 04 あなただけ.mp3';
+	$scope.track = '';
 	$scope.name = "Coming Up...";
 	$scope.artist = "Some music";
 	$scope.album = "the radio";
+	$scope.playing = false;
 	$scope.cover = '';
+	$scope.clock = {
+		min:0,
+		sec:0
+	}
 	$scope.tracklisting= {
 		upnext:[],
 		played:[]
@@ -23,26 +28,41 @@ app.controller('songController',['$scope', '$http', '$document', function($scope
 			$scope.album = data.album;
 			$scope.track = data.filepath;
 			$scope.cover = data.cover;
+
+			$scope.playing = true;
+			$scope.clock = {
+				min:0,
+				sec:0
+			}
 			console.log($scope.cover);
 			//console.log($scope.track);
-
-			$document.find('audio source')[0].src = $scope.track;
-			$document.find('audio')[0].load();
 		}).error(function(data, status, headers, config){
 			console.log("Couldn't find the song??");
 		});
 	}
+	$interval(function(){
+		if($scope.playing){
+			if($scope.clock.sec < 59){
+				$scope.clock.sec++;
+			} else {
+				$scope.clock.min++;
+				$scope.clock.sec = 0;
+			}
+		}
+	},1000)
 	$scope.next = function(){
 		$scope.tracklisting.played=$scope.tracklisting.upnext.splice(Math.floor(Math.random()*$scope.tracklisting.upnext.length),1).concat($scope.tracklisting.played);
 		loadTrack($scope.tracklisting.played[0]._id);
 	}
 	$scope.play = function(){
 		$document.find("audio")[0].play();
+		$scope.playing = true;
 	}
 	$scope.pause = function(){
 		$document.find('audio')[0].pause();
+		$scope.playing = false;
 	}
 	$document.find('audio').on('ended',function(){
-		console.log('audio done');
+		$scope.next();
 	});
 }]);	

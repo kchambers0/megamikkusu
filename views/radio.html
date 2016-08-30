@@ -33,15 +33,15 @@
 				<div class="main col-md-5">
 					<div class="clock">
 						<div class="bubble small" style="left:20px">min</div>
-						<div class="bubble large" style="left:60px"></div>
+						<div class="bubble large" style="left:60px" ng-binding="clock.min">{{clock.min}}</div>
 						<div class="bubble separator" style="left:175px;"></div>
-						<div class="bubble large" style="left:210px"></div>
+						<div class="bubble large" style="left:210px" ng-binding="clock.sec">{{clock.sec}}</div>
 						<div class="bubble small" style="left:280px">sec</div>
 					</div>
-					<div class="album">
-						<img src="{{cover}}" />
+					<div class="album" style="background-image:url('{{cover}}')">
+						<!--<img src="{{cover}}" /> -->
 						<p class="info">
-							{{name}} - {{artist}} on {{album}}
+							<span class="nowrap">{{name}}</span> - <span class="nowrap">{{artist}}</span> <span class="nowrap">on {{album}}</span>
 						</p>
 					</div>
 				</div>
