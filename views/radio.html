@@ -2,16 +2,17 @@
 <html ng-app="radio">
 	<head>
 		<title>{{title}}</title>
-		<link rel="stylesheet" type="text/css" href="/static/styles/radio_styles.css" />
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/static/styles/radio_styles.css" />
 	</head>
 	<body>
 		<div ng-controller="songController" class="container">
+			<h1>{{title}}</h1>
 			<audio id="musicbox" ng-bind="musicbox" src="{{track}}" autoplay>
 				<!--<source src="{{track}}" type="audio/mpeg"/>-->
 			</audio>
 			<div class="row">
-				<div class="player col-md-2">
+				<div class="player col-xs-2">
 					<ul class="controls">
 						<li class="next" ng-click="next()">
 							
@@ -30,7 +31,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="main col-md-5">
+				<div class="main col-md-5 col-xs-10">
 					<div class="clock">
 						<div class="bubble small" style="left:20px">min</div>
 						<div class="bubble large" style="left:60px" ng-binding="clock.min">{{clock.min}}</div>
@@ -38,15 +39,15 @@
 						<div class="bubble large" style="left:210px" ng-binding="clock.sec">{{clock.sec}}</div>
 						<div class="bubble small" style="left:280px">sec</div>
 					</div>
-					<div class="album" style="background-image:url('{{cover}}')">
+					<div class="album" style='background-image:url("{{cover}}")'>
 						<!--<img src="{{cover}}" /> -->
 						<p class="info">
 							<span class="nowrap">{{name}}</span> - <span class="nowrap">{{artist}}</span> <span class="nowrap">on {{album}}</span>
 						</p>
 					</div>
 				</div>
-				<div class="links col-md-5">
-					<h1>{{title}}</h1>
+				<div class="links col-md-5 col-xs-12">
+					
 				</div>
 			</div>
 			
